@@ -1,0 +1,111 @@
+.main-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+
+  width: 5rem;
+  background-color: white;
+  z-index: 1;
+
+  transition: width 150ms ease-in-out;
+}
+
+.nav-link-text {
+  display: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.nav-items {
+  // outline: 2px solid pink;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50vh;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.nav-item {
+  //outline: 1px solid lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 50ch;
+  width: 100%;
+  margin-bottom: 1em;
+
+  &:hover {
+    background-color: rgba(black, .1);
+  }
+
+  & a {
+    color: #555;
+  }
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  height: 2rem;
+
+  & i {
+    display: block;
+    width: 2rem;
+    min-width: 2rem;
+    margin: 0 1.5rem;
+  }
+}
+
+@keyframes navLabelFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 601px) {
+  .main-nav:hover {
+    width: 16rem;
+  }
+  .main-nav:hover .nav-link-text {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-nav {
+    height: 4rem;
+    flex-direction: row;
+    border: none;
+    border-top: 2px solid lightgray;
+    width: 100%;
+    overflow: hidden;
+  }
+  .nav-link i {
+    margin: 0 .5rem;
+  }
+  .nav-item {
+    // outline: 1px solid red;
+    justify-content: space-around;
+    margin: 0 1rem 1rem;
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+  .nav-items {
+    flex-direction: row;
+    min-height: 10vh;
+  }
+  .workspace {
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+  }
+}

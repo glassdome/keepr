@@ -1,0 +1,79 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 16px;
+  --header-height: 4rem;
+  --nav-width: 4.3rem;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav workspace";
+
+  grid-template-rows: var(--header-height) auto;
+  grid-template-columns: var(--nav-width) 1fr;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+}
+
+.header {
+  grid-area: header;
+}
+.main-nav {
+  grid-area: nav;
+
+}
+.workspace {
+  grid-area: workspace;
+}
+
+/*
+ * Large screens
+ */
+// @media (min-width: 601px) {
+//   .main-nav:hover {
+//     width: 16rem;
+//   }
+//   .main-nav:hover .nav-link-text {
+//     display: block;
+//     opacity: 1;
+//   }
+// }
+
+/*
+ * Small screens
+ */
+
+@media (max-width: 600px) {
+  body {
+    margin: 0;
+  }
+  .App {
+    grid-template-areas:
+      "header header"
+      "workspace workspace"
+      "nav nav";
+  }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  vertical-align: middle;
+}

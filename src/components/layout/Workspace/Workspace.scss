@@ -1,0 +1,48 @@
+.workspace {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-workspace);
+  width: 100%;
+}
+
+.workspace__main {
+  /* border: var(--bd-workspace); */
+  border-radius: 8px;
+
+  background-color: var(--bg-workspace);
+  padding: 2rem;
+
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+
+  flex: 0 0 200px;
+  flex-wrap: wrap;
+}
+
+.workspace__controls {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .workspace {
+    overflow: scroll;
+    overflow-x: hidden;
+    //overflow: hidden;
+  }
+  .create-widget {
+    width: 75vw;
+  }
+  .workspace__main {
+    // border: 8px solid #FFE87C;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    
+    min-width: 250px;
+    padding: .5rem 1.5rem;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+}
