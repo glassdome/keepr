@@ -11,21 +11,28 @@ export default function App() {
     setNotes(db.notes as NoteData[]);
   }, []);
 
-  // const updateNote = (data: NoteData) => {
-  //   const index = notes.findIndex((n: NoteData) => n.id === data.id);
-  //   if (index < 0) {
-  //     console.warn(`Note with ID ${data.id} not found. Cannot update.`);
-  //   } else {
-  //     notes.splice(index, 1, data);
-  //     setNotes([...notes]);
-  //   }
-  // };
+  // TODO: Implement setting the 'modified' timestamp on update.
+  const updateNote = (data: NoteData) => {
+    console.log('Updating note...');
+    const index = notes.findIndex((n: NoteData) => n.id === data.id);
+    if (index < 0) {
+      console.warn(`Note with ID ${data.id} not found. Cannot update.`);
+    } else {
+      notes.splice(index, 1, data);
+      setNotes([...notes]);
+    }
+  };
+
+  const workspaceProps = {
+    notes,
+    onUpdate: updateNote
+  };
 
   return (
     <div className="App">
       <Header />
       <Nav />
-      <Workspace notes={notes} />
+      <Workspace {...workspaceProps} />
     </div>
   );
 }

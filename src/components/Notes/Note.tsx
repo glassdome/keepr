@@ -11,14 +11,22 @@ export type NoteData = {
   body: string;
 };
 
-const Note = (props: NoteData) => {
+export type NoteUpdateFunction = (n: NoteData) => void;
+
+export type NoteProps = {
+  note: NoteData;
+  onUpdate: NoteUpdateFunction;
+};
+
+const Note = (props: NoteProps) => {
   // Flag indicating if the NoteEditor is visible.
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const renderEditor = () => {
     const editProps: EditorProps = {
-      note: props,
-      onClose: () => setIsEditing(false)
+      note: props.note,
+      onClose: () => setIsEditing(false),
+      onUpdate: props.onUpdate
     };
     return <NoteEditor {...editProps} />;
   };
@@ -35,7 +43,7 @@ const Note = (props: NoteData) => {
     <div className="note-display" onClick={() => setIsEditing(true)}>
       {renderModal()}
       <div className="note-display-header">
-        <div className="note-display-title">{props.title}</div>
+        <div className="note-display-title">{props.note.title}</div>
         <div className="note-display-pin">
           <PushPin />
         </div>
@@ -43,7 +51,7 @@ const Note = (props: NoteData) => {
 
       <div className="display-body-container">
         <div className="note-display-body">
-          <p>{props.body}</p>
+          <p>{props.note.body}</p>
         </div>
       </div>
       <NoteControls />
