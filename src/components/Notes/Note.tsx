@@ -12,7 +12,8 @@ export type NoteData = {
 };
 
 const Note = (props: NoteData) => {
-  const [isEditing, setIsEditing] = useState(false);
+  // Flag indicating if the NoteEditor is visible.
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const renderEditor = () => {
     const editProps: EditorProps = {

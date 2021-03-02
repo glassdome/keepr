@@ -8,8 +8,6 @@ export default function App() {
   const [notes, setNotes] = useState<NoteData[]>([]);
 
   useEffect(() => {
-    const t = db.notes;
-    console.log(`notes : ${JSON.stringify(t, null, 2)}`);
     setNotes(db.notes as NoteData[]);
   }, []);
 
