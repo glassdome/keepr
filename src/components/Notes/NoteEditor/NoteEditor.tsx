@@ -1,33 +1,50 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { NoteData, NoteControls, NoteUpdateFunction } from '../../Notes';
 import { PushPin } from '../../icons';
+import { NoteContext, NoteFunctionContextType } from '../../context';
+
 import './NoteEditor.scss';
 
 type EditorProps = {
-  note: NoteData;
+  note?: NoteData;
   onClose: () => void;
   onUpdate: NoteUpdateFunction;
+  placeholderTitle?: string;
+  placeholderBody?: string;
 };
+
+const safeGetNote = (note?: NoteData): NoteData => {
+  if (note !== undefined) {
+    return {...note} as NoteData
+  } else {
+    return { id: uuidv4(), body: '' }
+  }
+}
 
 const NoteEditor = (props: EditorProps) => {
   const AUTOSAVE_INTERVAL = 2000;
 
   // The note we are currently editing.
-  const [note, setNote] = useState<NoteData>(props.note);
+  const [note, setNote] = useState<NoteData>(safeGetNote(props.note));
 
   // This ref is used to have access to current state in useEffect
   const noteRef = useRef<NoteData>(note);
 
+  const noteFunctions = useContext(NoteContext) as NoteFunctionContextType;
+
   // Run update immediately when modal closes.
   useEffect(() => {
-    return props.onUpdate(noteRef.current);
+    // return props.onUpdate(noteRef.current);
+    return noteFunctions.onUpdate(noteRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Setup debounced auto-save function.
+  // Setup auto-save function.
   useEffect(() => {
     const updateTimerId = setTimeout(() => {
-      props.onUpdate(note);
+      // props.onUpdate(note);
+      noteFunctions.onUpdate(note);
     }, AUTOSAVE_INTERVAL);
 
     return () => clearTimeout(updateTimerId);

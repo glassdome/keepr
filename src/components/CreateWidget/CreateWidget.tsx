@@ -1,12 +1,53 @@
-//import "./PlainText.scss";
-
-// import NoteControls from "../Notes/NoteControls";
-// import PushPin from "../icons/PushPin";
+import { useState } from 'react';
+import { NoteEditor } from '../Notes';
 import "./CreateWidget.scss";
 
-const PlainTextEdit = () => {
+const CreateWidget = () => {
+  const [editorVisible, setEditorVisible] = useState<boolean>(false);
+
+  const overlayClass = (): string => {
+    const name = 'create-widget__overlay '
+    return editorVisible ? `${name} show` : `${name} hide`;
+  }
+  
+  const widgetClass = (): string => {
+    const name = 'create-widget';
+    return editorVisible ? `${name} hide` : `${name} flex`;
+  }
+
+  const renderEditor = () => {
+    if (!editorVisible) return null;
+    const editorProps = {
+      note: { id: '', title: 'Title', body: 'Take a note...'},
+      onClose: () => setEditorVisible(false),
+      onUpdate: () => console.log('writing note...')
+    }
+    return <NoteEditor {...editorProps} />
+  }
+
   return (
-    <div className="create-widget">Take a note...</div>
+    <>
+      <div className={overlayClass()} onClick={() => setEditorVisible(false)}/>
+      <div className={widgetClass()}>
+        
+        <input type="text" 
+          className="create-widget__input" 
+          placeholder="Take a note..."
+          onClick={() => setEditorVisible(true)}/>
+
+        <div className="create-widget__icons">
+          <div className="widget-icon">
+            <i className="material-icons-outlined">check_box</i>
+          </div>
+          <div className="widget-icon">
+            <i className="material-icons-outlined">insert_photo</i>
+          </div>
+        </div>
+      </div>
+      <div className="editor-surface">
+        { renderEditor() }
+      </div>
+    </>
     // <div className="create-widget">
     //   <div className="create__header">
     //     <div
@@ -49,4 +90,4 @@ const PlainTextEdit = () => {
   );
 };
 
-export default PlainTextEdit;
+export default CreateWidget;

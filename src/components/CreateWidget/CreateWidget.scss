@@ -1,19 +1,83 @@
 .create-widget {
-  border: 1px solid darkgray;
-  border-radius: 6px;
+  --inner-height: 2.5rem;
 
-  width: 50vw;
+  border: 1px solid darkgray;
+  border-radius: 8px;
+
+  width: 70vw;
+  max-width: 650px;
   font-size: 1rem;
   font-weight: 600;
   color: #888;
-  //height: 3rem;
   text-align: left;
   display: flex;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: .25rem .5rem;
   background-color: white;
   // box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   // box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   // box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;  
+  z-index: 7;
+
+  &__overlay {
+    background-color: rgba(pink, .50);
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 6;
+  }
+  
+  &__input {
+    width: 100%;
+    height:  var(--inner-height);
+
+    font-weight: 600;
+    font-size: 1.05rem;
+    border: none;
+    padding-left: 10px;
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 7rem;
+    height: 2rem;
+  }
+
+  & .widget-icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--inner-height);
+    width: var(--inner-height);
+    border-radius: 50%;
+
+    &:hover {
+      background-color: rgba(black, .15);
+    }
+  }
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+.editor-surface {
+  z-index: 10;
+
+  & .editor__edited {
+    display: none;
+  }
+
+  & textarea {
+    min-height: 5rem;
+  }
 }

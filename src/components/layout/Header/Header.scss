@@ -6,7 +6,9 @@
   height: var(--header-height);
   
   background-color: white;
-  border-bottom: 2px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  
+  z-index: 6;
 }
 
 .header-left {
