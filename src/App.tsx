@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Nav, Header, Workspace } from "./components/layout";
 import { NoteData } from "./components/Notes";
 import { db } from "./data/db";
+import { NoteContext } from './components/context';
 import "./styles.scss";
 
 export default function App() {
@@ -12,7 +13,7 @@ export default function App() {
   }, []);
 
   // TODO: Implement setting the 'modified' timestamp on update.
-  const updateNote = (data: NoteData) => {
+  const updateNote = (data: NoteData): void => {
     console.log('Updating note...');
     const index = notes.findIndex((n: NoteData) => n.id === data.id);
     if (index < 0) {
@@ -23,16 +24,35 @@ export default function App() {
     }
   };
 
+  const createNote = (newNote: NoteData): void => {
+    setNotes([...notes, newNote]);
+  }
+
+  const upsertNote = (note: NoteData): void => {
+    if (notes.find(n => n.id === note.id) === undefined) {
+      createNote(note);
+    } else {
+      updateNote(note);
+    }
+  }
+  
   const workspaceProps = {
     notes,
     onUpdate: updateNote
   };
 
+  const functions = {
+    onUpdate: upsertNote,
+    onCreate: createNote
+  }
+
   return (
-    <div className="App">
-      <Header />
-      <Nav />
-      <Workspace {...workspaceProps} />
-    </div>
+    <NoteContext.Provider value={functions}>
+      <div className="App">
+        <Header />
+        <Nav />
+        <Workspace {...workspaceProps} />
+      </div>
+    </NoteContext.Provider>
   );
 }

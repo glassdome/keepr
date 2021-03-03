@@ -15,7 +15,6 @@ export type NoteUpdateFunction = (n: NoteData) => void;
 
 export type NoteProps = {
   note: NoteData;
-  onUpdate: NoteUpdateFunction;
 };
 
 const Note = (props: NoteProps) => {
@@ -26,7 +25,6 @@ const Note = (props: NoteProps) => {
     const editProps: EditorProps = {
       note: props.note,
       onClose: () => setIsEditing(false),
-      onUpdate: props.onUpdate
     };
     return <NoteEditor {...editProps} />;
   };

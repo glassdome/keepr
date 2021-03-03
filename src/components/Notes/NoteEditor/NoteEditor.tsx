@@ -1,53 +1,60 @@
-import { useEffect, useRef, useState } from 'react';
-import { NoteData, NoteControls, NoteUpdateFunction } from '../../Notes';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { NoteData, NoteControls } from '../../Notes';
 import { PushPin } from '../../icons';
+import { NoteContext, NoteFunctionContextType } from '../../context';
+
 import './NoteEditor.scss';
 
 type EditorProps = {
-  note: NoteData;
+  note?: NoteData;
   onClose: () => void;
-  onUpdate: NoteUpdateFunction;
+  placeholderTitle?: string;
+  placeholderBody?: string;
 };
+
+const safeGetNote = (note?: NoteData): NoteData => {
+  if (note !== undefined) {
+    return {...note} as NoteData
+  } else {
+    return { id: uuidv4(), body: '' }
+  }
+}
 
 const NoteEditor = (props: EditorProps) => {
   const AUTOSAVE_INTERVAL = 2000;
 
   // The note we are currently editing.
-  const [note, setNote] = useState<NoteData>(props.note);
+  const [note, setNote] = useState<NoteData>(safeGetNote(props.note));
 
   // This ref is used to have access to current state in useEffect
   const noteRef = useRef<NoteData>(note);
 
-  // Run update immediately when modal closes.
+  const noteFunctions = useContext(NoteContext) as NoteFunctionContextType;
+
+  /*
+   * This function avoids saving empty notes.
+   */
+  const updateNote = (n: NoteData) => {
+    const title = n.title?.trim().length || 0;
+    const body = n.body.trim();
+
+    if (title > 0 || body.length > 0) {
+      noteFunctions.onUpdate(n);
+    }
+  }
+
   useEffect(() => {
-    return props.onUpdate(noteRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return updateNote(noteRef.current); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Setup debounced auto-save function.
   useEffect(() => {
     const updateTimerId = setTimeout(() => {
-      props.onUpdate(note);
+      updateNote(note);
     }, AUTOSAVE_INTERVAL);
 
-    return () => clearTimeout(updateTimerId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => clearTimeout(updateTimerId); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [note]);
-
-  // const encode = (text: string) => {
-  //   const output = text
-  //     .replace(/[\\]/g, "\\\\")
-  //     .replace(/[/]/g, "\\/")
-  //     .replace(/[\b]/g, "\\b")
-  //     .replace(/[\f]/g, "\\f")
-  //     .replace(/[\n]/g, "\\n")
-  //     .replace(/[\r]/g, "\\r")
-  //     .replace(/[\t]/g, "\\t")
-  //     .replace(/["]/g, '\\"')
-  //     .replace(/\\'/g, "\\'");
-  //   console.log(output);
-  //   return output;
-  // };
 
   const updateNoteBody = (body: string) => setNote({ ...note, body });
   //const updateNoteTitle = (title: string) => setNote({ ...note, title: encode( title ) });
@@ -64,6 +71,7 @@ const NoteEditor = (props: EditorProps) => {
       <div className="edit-body-container">
         <div className="editor__body">
           <textarea
+            placeholder={props.placeholderBody}
             value={note.body}
             onChange={(e) => updateNoteBody(e.target.value)}
           />
@@ -91,3 +99,17 @@ const NoteEditor = (props: EditorProps) => {
 
 export { NoteEditor };  export type { EditorProps };
 
+// const encode = (text: string) => {
+//   const output = text
+//     .replace(/[\\]/g, "\\\\")
+//     .replace(/[/]/g, "\\/")
+//     .replace(/[\b]/g, "\\b")
+//     .replace(/[\f]/g, "\\f")
+//     .replace(/[\n]/g, "\\n")
+//     .replace(/[\r]/g, "\\r")
+//     .replace(/[\t]/g, "\\t")
+//     .replace(/["]/g, '\\"')
+//     .replace(/\\'/g, "\\'");
+//   console.log(output);
+//   return output;
+// };
