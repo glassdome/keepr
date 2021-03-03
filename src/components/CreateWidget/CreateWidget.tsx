@@ -5,20 +5,21 @@ import "./CreateWidget.scss";
 const CreateWidget = () => {
   const [editorVisible, setEditorVisible] = useState<boolean>(false);
 
-  const overlayClass = (): string => {
-    const name = 'create-widget__overlay '
-    return editorVisible ? `${name} show` : `${name} hide`;
-  }
-  
   const widgetClass = (): string => {
     const name = 'create-widget';
     return editorVisible ? `${name} hide` : `${name} flex`;
   }
 
+  const overlayClass = (): string => {
+    const name = 'create-widget__overlay '
+    return editorVisible ? `${name} show` : `${name} hide`;
+  }
+  
   const renderEditor = () => {
     if (!editorVisible) return null;
     const editorProps = {
-      note: { id: '', title: 'Title', body: 'Take a note...'},
+      placeholderTtle: 'Title', 
+      placeholderBody: 'Take a note...',
       onClose: () => setEditorVisible(false),
       onUpdate: () => console.log('writing note...')
     }
@@ -48,45 +49,6 @@ const CreateWidget = () => {
         { renderEditor() }
       </div>
     </>
-    // <div className="create-widget">
-    //   <div className="create__header">
-    //     <div
-    //       className="create__title"
-    //       contentEditable="true"
-    //       aria-multiline="true"
-    //       role="textbox"
-    //     >
-    //       {props.title}
-    //     </div>
-    //     <div className="create__pin">
-    //       <PushPin />
-    //     </div>
-    //   </div>
-
-    //   <div className="edit-body-container">
-    //     <div
-    //       className="create__body"
-    //       contentEditable="true"
-    //       aria-multiline="true"
-    //       role="textbox"
-    //     >
-    //       <p>{props.body}</p>
-    //     </div>
-    //   </div>
-
-    //   <div className="create__footer">
-    //     <NoteControls />
-    //     <div className="create__undo">
-    //       <div className="edit-left">
-    //         <i className="material-icons-outlined">undo</i>
-    //       </div>
-    //       <div className="edit-right">
-    //         <i className="material-icons-outlined">redo</i>
-    //       </div>
-    //     </div>
-    //     <div className="create__close">close</div>
-    //   </div>
-    // </div>
   );
 };
 

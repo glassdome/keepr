@@ -8,10 +8,8 @@ type NoteFunctionContextType = {
   onCreate: NoteEditFunction;
 }
 
-// const NoteContext = ({onUpdate, onCreate}: NoteFunctions): React.Context<NoteFunctions> => 
-//   React.createContext<NoteFunctions>({ onUpdate, onCreate });
-
 const NoteContext = React.createContext<NoteFunctionContextType | {}>({});
 
 export type { NoteEditFunction, NoteFunctionContextType};
 export default NoteContext;
+
