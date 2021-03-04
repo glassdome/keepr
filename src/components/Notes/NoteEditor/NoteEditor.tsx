@@ -22,7 +22,7 @@ const safeGetNote = (note?: NoteData): NoteData => {
 }
 
 const NoteEditor = (props: EditorProps) => {
-  const AUTOSAVE_INTERVAL = 2000;
+  const AUTOSAVE_INTERVAL = 1000;
 
   // The note we are currently editing.
   const [note, setNote] = useState<NoteData>(safeGetNote(props.note));
@@ -57,12 +57,19 @@ const NoteEditor = (props: EditorProps) => {
   }, [note]);
 
   const updateNoteBody = (body: string) => setNote({ ...note, body });
-  //const updateNoteTitle = (title: string) => setNote({ ...note, title: encode( title ) });
-
+  const updateNoteTitle = (title: string) => setNote({ ...note, title });
+  console.log(`placeBody: ${props.placeholderBody}, placeTitle: ${props.placeholderTitle}`);
   return (
     <div className="editor" onClick={(e) => e.stopPropagation()}>
       <div className="editor__header">
-        <div className="editor__title">{note.title}</div>
+        <div className="editor__title">
+
+          <input type="text" className="editor__title-input" 
+            placeholder={props.placeholderTitle}
+            value={note.title}
+            onChange={e => updateNoteTitle(e.target.value)}/>
+          
+        </div>
         <div className="editor__pin">
           <PushPin />
         </div>
