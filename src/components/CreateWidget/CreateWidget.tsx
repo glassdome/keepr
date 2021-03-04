@@ -18,10 +18,9 @@ const CreateWidget = () => {
   const renderEditor = () => {
     if (!editorVisible) return null;
     const editorProps = {
-      placeholderTtle: 'Title', 
+      placeholderTitle: 'Title', 
       placeholderBody: 'Take a note...',
-      onClose: () => setEditorVisible(false),
-      onUpdate: () => console.log('writing note...')
+      onClose: () => setEditorVisible(false)
     }
     return <NoteEditor {...editorProps} />
   }

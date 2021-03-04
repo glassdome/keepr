@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   padding: .7rem;
-  
+
   & .editor__pin {
     width: 2rem;
     height: 2rem;
@@ -28,14 +28,20 @@
     }
   }
 }
-
 .editor__title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #666;
   width: 100%;
-  text-align: left;
+  padding-top: .25rem;
+  &-input {
+    border: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #666;
+    width: 100%;
+    text-align: left;
+  }
 }
+
+
 .editor__body {
   //min-height: 15rem;
   height: 100%;
