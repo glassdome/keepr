@@ -2,16 +2,20 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import App from '../App'
+import TrashPage from '../pages/TrashPage';
+import ReminderPage from '../pages/ReminderPage'
 import ControlsComponent from '../components/ControlComponent'
 
 const NotFoudPage = () => (<div>404!</div>)
+
+
 
 const AppRouter = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/" component={App} exact={true}/>
       <Route path="/notifications" >
-        <ControlsComponent icon="reminders"/>
+        <ReminderPage />
       </Route>
       <Route path="/label" >
          <ControlsComponent icon="label"/>
@@ -23,7 +27,7 @@ const AppRouter = () => (
          <ControlsComponent icon="archive"/>
       </Route>
       <Route path="/delete" >
-         <ControlsComponent icon="delete"/>
+         <TrashPage />
       </Route>
       <Route path="/refresh" >
          <ControlsComponent icon="refresh"/>

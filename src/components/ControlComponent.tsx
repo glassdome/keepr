@@ -13,6 +13,7 @@ const ControlWorkspace = (props: {icon: string }) => {
   );
 }
 
+
 const ControlComponent = (props: { icon: string }) => {
   return (
     <div className="App">
