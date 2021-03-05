@@ -57,9 +57,9 @@
   gap: 1em;
   height: 100%;
   padding: 0 .5rem;
-  min-width: 20vw;
-  
+  min-width: 20vw;  
 }
+
 [class*="header-item-"] {
   //outline: 1px solid red;
   cursor: pointer;
@@ -78,4 +78,9 @@
 .header-item-user {
   margin-right: .5rem;
   margin-left: auto;
+}
+
+.header-link{
+  text-decoration: none;
+  color: black;
 }

@@ -1,4 +1,5 @@
 import "./Header.scss";
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -36,16 +37,22 @@ const Header = () => {
 
       <div className="header-tools">
         <div className="header-item-refresh">
-          <span className="material-icons-outlined">refresh</span>
+          <span className="material-icons-outlined">
+            <Link to='/' className="header-link">refresh</Link>
+          </span>
         </div>
         <div className="header-item-listview">
-          <span className="material-icons-outlined">view_list</span>
+          <span className="material-icons-outlined">
+            <Link to='/view_list' className="header-link">view_list</Link>
+          </span>
         </div>
         <div className="header-item-settings">
-          <span className="material-icons-outlined">settings</span>
+             <span className="material-icons-outlined"><Link to='/settings' className="header-link">settings</Link></span>
         </div>
         <div className="header-item-user">
-          <span className="material-icons-outlined">person</span>
+          <span className="material-icons-outlined">
+            <Link to='/person' className="header-link">person</Link>
+          </span>
         </div>
       </div>
     </header>
