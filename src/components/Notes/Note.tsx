@@ -36,7 +36,10 @@ const Note = (props: NoteProps) => {
       </Modal>
     );
   };
-
+  console.log(`body : ${props.note.body}`);
+  const asHtml = (text: string) => {
+    return text.replace(/\n/g, '<br/>');
+  }
   return (
     <div className="note-display" onClick={() => setIsEditing(true)}>
       {renderModal()}
@@ -48,8 +51,9 @@ const Note = (props: NoteProps) => {
       </div>
 
       <div className="display-body-container">
-        <div className="note-display-body">
-          <p>{props.note.body}</p>
+        <div 
+          className="note-display-body"
+          dangerouslySetInnerHTML={{__html: asHtml(props.note.body)}}>
         </div>
       </div>
       <NoteControls />
