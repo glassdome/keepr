@@ -5,6 +5,8 @@ import {
   ColorPalette,
   MoreVert
 } from "../icons";
+import { Dropdown, DropdownItem, DropdownOpener } from '../Dropdown';
+import '../Dropdown/Dropdown.scss';
 
 const NoteControls = () => {
   return (
@@ -18,11 +20,18 @@ const NoteControls = () => {
       <li className="note-control-item">
         <ColorPalette />
       </li>
-      <li className="note-control-item item--more">
+      <li className="note-control-item">
         <AddImage />
       </li>
-      <li className="note-control-item item--more">
-        <MoreVert />
+      <li className="note-control-item">
+        <DropdownOpener>
+          <MoreVert />
+          <Dropdown>
+            <DropdownItem label="Delete Note"/>
+            <DropdownItem label="Change labels"/>
+            <DropdownItem label="Make a copy"/>
+          </Dropdown>
+        </DropdownOpener>
       </li>
     </ul>
   );
