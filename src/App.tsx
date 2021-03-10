@@ -36,7 +36,6 @@ export default function App() {
   }
   
   const deleteNote = (note: NoteData): void => {
-    console.log(`App::deleteNote('${note.id}')`);
     const index = notes.findIndex((n: NoteData) => n.id === note.id);
     if (index < 0) {
       console.warn(`Note with ID ${note.id} not found. No changes made.`);

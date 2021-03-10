@@ -5,7 +5,7 @@ import NoteControls from './NoteControls';
 import { NoteEditor, EditorProps } from './NoteEditor';
 import './Note.scss';
 
-export type NoteData = {
+export interface NoteData {
   id: string;
   title?: string;
   body: string;
@@ -45,19 +45,21 @@ const Note = (props: NoteProps) => {
   return (
     <div className="note-display" onClick={() => setIsEditing(true)}>
       {renderModal()}
-      <div className="note-display-header">
-        <div className="note-display-title">{props.note.title}</div>
+      <header className="note-display-header">
+        <h2 className="note-display-title">
+            {props.note.title}
+        </h2>
         <div className="note-display-pin">
           <PushPin />
         </div>
-      </div>
+      </header>
 
-      <div className="display-body-container">
+      <article className="display-body-container">
         <div 
           className="note-display-body"
           dangerouslySetInnerHTML={{__html: asHtml(props.note.body)}}>
         </div>
-      </div>
+      </article>
       <NoteControls note={props.note}/>
     </div>
   );

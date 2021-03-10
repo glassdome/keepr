@@ -16,8 +16,6 @@
   --bd-controls: none;
 }
 
-
-
 .note-display {
   border: var(--bd-note);
   cursor: default;
@@ -37,6 +35,18 @@
   transition: box-shadow 150ms linear;
 }
 
+.note-display-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-display-title {
+  color: #666;
+  font-size: 1rem;
+  font-weight: bold;
+  
+}
+
 .note-display:hover {
   /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   /* box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
@@ -44,20 +54,6 @@
   /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: 1px solid black;
-}
-
-.note-display-header {
-  outline: var(--bd-header);
-  display: flex;
-  justify-content: space-between;
-  color: #666;
-  margin-bottom: 0;
-
-  block-size: 20px;
-
-  font-size: 1rem;
-  font-weight: bold;
-  align-items: flex-inline;
 }
 
 .note-display-pin {
@@ -101,6 +97,9 @@
   transition: opacity var(--tr-show-hidden) ease-in;
 }
 
+/* 
+ * Show bottom controls and push-pin when hovering anywhere over the note 
+ */
 .note-display:hover .note-display-controls,
 .note-display:hover .note-display-pin {
   opacity: 1;
