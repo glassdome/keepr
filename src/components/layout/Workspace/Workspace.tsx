@@ -1,8 +1,8 @@
-import { Note, NoteData, NoteProps, NoteUpdateFunction } from '../../Notes';
+import { Note, NoteData, NoteProps, NoteFunction } from '../../Notes';
 import { CreateWidget } from '../../CreateWidget';
 import './Workspace.scss';
 
-const Workspace = (props: { notes: NoteData[], onUpdate: NoteUpdateFunction }) => {
+const Workspace = (props: { notes: NoteData[], onUpdate: NoteFunction }) => {
 
   const renderNotes = () => {
     return props.notes.map((note: NoteData, index) => {

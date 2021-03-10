@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import {
   AddAlert,
   AddImage,
@@ -5,8 +6,18 @@ import {
   ColorPalette,
   MoreVert
 } from "../icons";
+import { NoteData } from './Note';
+import { NoteContext, NoteFunctionContextType } from '../context';
+import { Dropdown, DropdownItem, DropdownOpener } from '../Dropdown';
+import '../Dropdown/Dropdown.scss';
 
-const NoteControls = () => {
+interface ControlProps {
+  note: NoteData
+}
+
+const NoteControls = ({ note }: ControlProps) => {
+  const context = useContext(NoteContext) as NoteFunctionContextType;
+
   return (
     <ul className="note-display-controls">
       <li className="note-control-item">
@@ -18,11 +29,18 @@ const NoteControls = () => {
       <li className="note-control-item">
         <ColorPalette />
       </li>
-      <li className="note-control-item item--more">
+      <li className="note-control-item">
         <AddImage />
       </li>
-      <li className="note-control-item item--more">
-        <MoreVert />
+      <li className="note-control-item">
+        <DropdownOpener>
+          <MoreVert />
+          <Dropdown>
+            <DropdownItem label="Delete Note" note={note} onClick={context.onDelete}/>
+            <DropdownItem label="Change labels" note={note} onClick={() => console.log('Change labels')}/>
+            <DropdownItem label="Make a copy" note={note} onClick={() => console.log('Make a copy')}/>
+          </Dropdown>
+        </DropdownOpener>
       </li>
     </ul>
   );

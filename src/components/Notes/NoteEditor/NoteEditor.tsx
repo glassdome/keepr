@@ -58,7 +58,7 @@ const NoteEditor = (props: EditorProps) => {
 
   const updateNoteBody = (body: string) => setNote({ ...note, body });
   const updateNoteTitle = (title: string) => setNote({ ...note, title });
-  console.log(`placeBody: ${props.placeholderBody}, placeTitle: ${props.placeholderTitle}`);
+  
   return (
     <div className="editor" onClick={(e) => e.stopPropagation()}>
       <div className="editor__header">
@@ -87,7 +87,7 @@ const NoteEditor = (props: EditorProps) => {
       <div className="editor__edited">Edited Feb 20, 2021</div>
 
       <div className="editor__footer">
-        <NoteControls />
+        <NoteControls note={note} />
         <div className="editor__undo">
           <div className="edit-left">
             <i className="material-icons-outlined">undo</i>
