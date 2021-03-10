@@ -11,7 +11,8 @@ export type NoteData = {
   body: string;
 };
 
-export type NoteUpdateFunction = (n: NoteData) => void;
+export type NoteFunction = (n: NoteData) => void;
+
 
 export type NoteProps = {
   note: NoteData;
@@ -36,10 +37,11 @@ const Note = (props: NoteProps) => {
       </Modal>
     );
   };
-  console.log(`body : ${props.note.body}`);
+  
   const asHtml = (text: string) => {
     return text.replace(/\n/g, '<br/>');
   }
+  
   return (
     <div className="note-display" onClick={() => setIsEditing(true)}>
       {renderModal()}
@@ -56,7 +58,7 @@ const Note = (props: NoteProps) => {
           dangerouslySetInnerHTML={{__html: asHtml(props.note.body)}}>
         </div>
       </div>
-      <NoteControls />
+      <NoteControls note={props.note}/>
     </div>
   );
 };

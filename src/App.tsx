@@ -14,7 +14,6 @@ export default function App() {
 
   // TODO: Implement setting the 'modified' timestamp on update.
   const updateNote = (data: NoteData): void => {
-    console.log('Updating note...');
     const index = notes.findIndex((n: NoteData) => n.id === data.id);
     if (index < 0) {
       console.warn(`Note with ID ${data.id} not found. Cannot update.`);
@@ -36,6 +35,17 @@ export default function App() {
     }
   }
   
+  const deleteNote = (note: NoteData): void => {
+    console.log(`App::deleteNote('${note.id}')`);
+    const index = notes.findIndex((n: NoteData) => n.id === note.id);
+    if (index < 0) {
+      console.warn(`Note with ID ${note.id} not found. No changes made.`);
+    } else {
+      notes.splice(index, 1);
+      setNotes([...notes]);
+    }
+  }
+
   const workspaceProps = {
     notes,
     onUpdate: updateNote
@@ -43,7 +53,8 @@ export default function App() {
 
   const functions = {
     onUpdate: upsertNote,
-    onCreate: createNote
+    onCreate: createNote,
+    onDelete: deleteNote
   }
 
   return (

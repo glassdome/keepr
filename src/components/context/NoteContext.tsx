@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { NoteData } from '../Notes';
+import { NoteData, NoteFunction } from '../Notes';
 
-type NoteEditFunction = (note: NoteData) => void;
+//type NoteEditFunction = (note: NoteData) => void;
 type NoteFunctionContextType = {
-  onUpdate: NoteEditFunction;
-  onCreate: NoteEditFunction;
+  onUpdate: NoteFunction;
+  onCreate: NoteFunction;
+  onDelete: NoteFunction;
 }
 
 const NoteContext = React.createContext<NoteFunctionContextType | {}>({});
 
-export type { NoteEditFunction, NoteFunctionContextType};
+export type { NoteFunction, NoteFunctionContextType};
 export default NoteContext;
 
