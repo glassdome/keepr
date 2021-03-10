@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import React from 'react';
 import { PushPin } from '../icons';
 import { Modal } from '../Modal';
 import NoteControls from './NoteControls';
 import { NoteEditor, EditorProps } from './NoteEditor';
 import './Note.scss';
 
-export type NoteData = {
+export interface NoteData {
   id: string;
   title?: string;
   body: string;
@@ -13,14 +13,13 @@ export type NoteData = {
 
 export type NoteFunction = (n: NoteData) => void;
 
-
 export type NoteProps = {
   note: NoteData;
 };
 
 const Note = (props: NoteProps) => {
   // Flag indicating if the NoteEditor is visible.
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = React.useState<boolean>(false);
 
   const renderEditor = () => {
     const editProps: EditorProps = {
@@ -42,24 +41,36 @@ const Note = (props: NoteProps) => {
     return text.replace(/\n/g, '<br/>');
   }
   
+  const emptyNote = () => {
+    const title = (props.note.title || '').trim();
+    return title.length === 0 && props.note.body.trim().length === 0
+  }
+
+  // Don't render an empty note.
+  if (emptyNote()) return null;
   return (
-    <div className="note-display" onClick={() => setIsEditing(true)}>
-      {renderModal()}
-      <div className="note-display-header">
-        <div className="note-display-title">{props.note.title}</div>
+    <article
+      className="note-display" 
+      onClick={() => setIsEditing(true)}>
+        {renderModal()}
+      <header className="note-display-header">
+        <h2 className="note-display-title">
+            {props.note.title}
+        </h2>
         <div className="note-display-pin">
           <PushPin />
         </div>
-      </div>
+      </header>
 
       <div className="display-body-container">
         <div 
+          data-testid="note-body"
           className="note-display-body"
           dangerouslySetInnerHTML={{__html: asHtml(props.note.body)}}>
         </div>
       </div>
       <NoteControls note={props.note}/>
-    </div>
+    </article>
   );
 };
 

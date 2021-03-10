@@ -19,7 +19,7 @@ const NoteControls = ({ note }: ControlProps) => {
   const context = useContext(NoteContext) as NoteFunctionContextType;
 
   return (
-    <ul className="note-display-controls">
+    <ul data-testid="note-controls" className="note-display-controls">
       <li className="note-control-item">
         <AddAlert />
       </li>
