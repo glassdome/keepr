@@ -60,7 +60,11 @@ const NoteEditor = (props: EditorProps) => {
   const updateNoteTitle = (title: string) => setNote({ ...note, title });
   
   return (
-    <div className="editor" onClick={(e) => e.stopPropagation()}>
+    <div 
+      data-testid='component-note-editor' 
+      className="editor" 
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className="editor__header">
         <div className="editor__title">
 
