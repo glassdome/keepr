@@ -1,0 +1,80 @@
+.signup {
+  --radius: 6px;
+
+  outline: 3px solid green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-size: 1.1rem;
+
+  &__heading {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    min-width: 210px;    
+    gap: 1.5rem;    
+    
+  }
+  &__button {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 1em;
+    border-radius: var(--radius);
+    border: 1px solid #555;
+    background-color: #555;
+    color: white;
+  }
+}
+
+input[type=text] {
+  font-size: inherit;
+  padding: 1em;
+  border-radius: var(--radius);
+  border: 1px solid darkgray;
+  background-color: white;
+  -webkit-autofill: white !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 2px solid green;
+  -webkit-text-fill-color: green;
+  box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.agree {
+  font-size: .9rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding-left: .5rem;
+
+  &__label {
+    margin-left: .5rem;
+  }
+  & > input {
+    cursor: pointer;
+  }
+}
+.signup__other {
+  display: flex;
+  justify-content: flex-end;
+  font-size: .9rem;
+  
+}

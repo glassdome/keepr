@@ -5,6 +5,8 @@ import { db } from "./data/db";
 import { NoteContext } from './components/context';
 import "./styles.scss";
 
+import Signup from './components/Signup/Signup';
+
 export default function App() {
   const [notes, setNotes] = useState<NoteData[]>([]);
 
@@ -56,7 +58,7 @@ export default function App() {
     onDelete: deleteNote
   }
 
-  return (
+  return (    
     <NoteContext.Provider value={functions}>
       <div className="App">
         <Header />
