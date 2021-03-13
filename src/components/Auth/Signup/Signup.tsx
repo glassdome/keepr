@@ -1,7 +1,7 @@
 import React from 'react';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 
-import UserPool from '../../auth/UserPool';
+import UserPool from '../../../auth/UserPool';
 import './Signup.scss';
 
 const Signup = () => {
@@ -79,7 +79,6 @@ const Signup = () => {
           <span>
             Already Registered? <a href="#baz">Sign In!</a>
           </span>
-
         </div>
       </form>
     </div>
