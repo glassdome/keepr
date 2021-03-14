@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 
 import UserPool from '../../../auth/UserPool';
@@ -30,7 +31,7 @@ const Signup = () => {
 
   return (
     <div className="signup">
-      <h1 className="signup__heading">Keepr</h1>
+      <Link to="/" className="signup__heading">Keepr</Link>
       <form 
         className="signup__form" 
         onSubmit={onSubmit}>
@@ -63,9 +64,6 @@ const Signup = () => {
           onChange={event => setLastName(event.target.value)}
         ></input>        
 
-        
-        
-        
         <label className="agree" htmlFor="agree__check">
           <input type="checkbox" id="agree__check" className="agree__check" name="agree"/>
           <span className="agree__label">
@@ -73,11 +71,10 @@ const Signup = () => {
           </span>
         </label>
       
-
         <button className="signup__button" type="submit">Signup</button>
         <div className="signup__other">
           <span>
-            Already Registered? <a href="#baz">Sign In!</a>
+            Already Registered? <Link to="/signin">Sign In!</Link>
           </span>
         </div>
       </form>

@@ -1,0 +1,53 @@
+.landing {
+  --nav-height: 4rem;
+
+  display: flex;
+  flex-direction: column;
+
+  &__nav {
+    height: var(--nav-height);
+    background-color: #444;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    & .nav-buttons {
+      
+      & [class^="btn"] {
+        font-size: .95rem;
+        padding: .5rem 1.5rem;
+        margin-right: 1rem;
+        //font-weight: 600;
+        text-decoration: none;
+      }
+      & .btn-signin {
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 4px;
+        color: white;
+      }
+      & .btn-signup {
+        background-color: #e2252a;
+        border: 2px solid #e2252a;
+        border-radius: 4px;
+        color: white;
+      }
+    }
+  }
+
+  &__main {
+    
+  }
+
+  &__hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - var(--nav-height));
+
+    & h1 {
+      font-size: 8rem;
+      color: #555;
+    }
+  }
+}

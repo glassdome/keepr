@@ -1,8 +1,6 @@
 import React from 'react';
+import { NoteFunction } from '../Notes';
 
-import { NoteData, NoteFunction } from '../Notes';
-
-//type NoteEditFunction = (note: NoteData) => void;
 type NoteFunctionContextType = {
   onUpdate: NoteFunction;
   onCreate: NoteFunction;
