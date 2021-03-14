@@ -1,9 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
-import { AccountContext, AuthFunction, SessionFunction, LogoutFunction } from '../../context/Account/Account';
-
-import { useAuth } from '../AuthProvider';
+import { AuthFunction } from '../AuthProvider/AuthProvider';
+import { useAuth } from '..';
 import './Signin.scss';
 
 const Signin = () => {
@@ -20,7 +18,7 @@ const Signin = () => {
     await signIn(email, password)
       .then(data => {
         console.log('User logged in', data);
-        history.push('/');
+        history.push('/notes');
       })
       .catch(err => {
         console.error('Login error', err);
@@ -59,28 +57,28 @@ const Signin = () => {
 };
 
 
-const Status = () => {
-  const [status, setStatus] = React.useState(false);
-  const { getSession , logout } = useContext(AccountContext);
+// const Status = () => {
+//   const [status, setStatus] = React.useState(false);
+//   const { getSession , logout } = useContext(AccountContext);
 
-  useEffect(() => {
-    if (getSession) {
-      getSession().then(session => {
-        console.log("Session: ", session);
-        setStatus(true);
-      });
-    }
-  }, []);
+//   useEffect(() => {
+//     if (getSession) {
+//       getSession().then(session => {
+//         console.log("Session: ", session);
+//         setStatus(true);
+//       });
+//     }
+//   }, []);
 
-  return (
-    <div>
-      { 
-        status 
-          ? <button onClick={logout}>Logout</button>
-          : "Please Sign-In" 
-      }
-    </div>
-  )
-}
+//   return (
+//     <div>
+//       { 
+//         status 
+//           ? <button onClick={logout}>Logout</button>
+//           : "Please Sign-In" 
+//       }
+//     </div>
+//   )
+// }
 
-export { Signin, Status };
+export { Signin };

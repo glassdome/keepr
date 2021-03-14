@@ -1,12 +1,14 @@
 import {useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { CognitoIdToken } from 'amazon-cognito-identity-js';
 
 import { Nav, Header, Workspace } from "../layout";
 import { NoteData } from "../Notes";
 import { NoteContext } from '../context';
 import { db } from "../../data/db";
-import { useAuth } from '../Auth/AuthProvider';
+import { useAuth } from '../Auth/AuthProvider/AuthProvider';
+
+import { Archive, Labels, Reminders, Trash } from '../pages'
 
 import "../../styles.scss";
 
@@ -89,16 +91,23 @@ const Keepr = () => {
     onDelete: deleteNote
   }
 
+  let { url } = useRouteMatch();
   return (
     <NoteContext.Provider value={functions}>
       <div className="App">
         <Header />
         <Nav />
+
         <Switch>
-          <Route exact={true} path="/">
+          <Route exact={true} path="/notes">
             <Workspace {...workspaceProps} />
           </Route>
+          <Route path={`${url}/reminders`} component={Reminders} />
+          <Route path={`${url}/labels`} component={Labels} />
+          <Route path={`${url}/archive`} component={Archive} />
+          <Route path={`${url}/trash`} component={Trash} />
         </Switch>
+      
       </div>
     </NoteContext.Provider> 
   );
