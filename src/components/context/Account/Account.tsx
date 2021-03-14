@@ -6,19 +6,31 @@ export type AuthFunction = (email: string, password: string) => Promise<CognitoU
 export type SessionFunction = () => Promise<CognitoUserSession>
 export type LogoutFunction = () => void;
 
+
+// interface AuthContextType {
+//   signIn: AuthFunction,
+//   signOut: () => void,
+//   getSession: SessionFunction,
+//   currentSession?: CognitoUserSession
+// }
+
+
 interface AccountContextType {
   authenticate?: AuthFunction
   getSession?: SessionFunction
   logout?: LogoutFunction
+  isLoggedIn?: boolean
+  setIsLoggedIn?: (status: boolean) => void;
 }
 
 const AccountContext = createContext<AccountContextType>({});
 
 interface AccountProps {
-  children: ReactNode
+  children: ReactNode,
+  setIsLoggedIn?: (status: boolean) => void;
 }
 
-const Account = ({ children }: AccountProps) => {
+const Account = ({ children, setIsLoggedIn }: AccountProps) => {
   
   const getSession = async (): Promise<CognitoUserSession> => {
     return await new Promise((resolve, reject) => {
@@ -68,7 +80,7 @@ const Account = ({ children }: AccountProps) => {
   };
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout }}>
+    <AccountContext.Provider value={{ authenticate, getSession, logout, setIsLoggedIn }}>
       {children}
     </AccountContext.Provider>
   )

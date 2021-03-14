@@ -1,20 +1,26 @@
 import React, { useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
 import { AccountContext, AuthFunction, SessionFunction, LogoutFunction } from '../../context/Account/Account';
 
+import { useAuth } from '../AuthProvider';
 import './Signin.scss';
 
 const Signin = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const history = useHistory();
+  const auth = useAuth();
 
-  const { authenticate } = useContext(AccountContext);
 
-  const onSubmit = (event: React.FormEvent<EventTarget>) => {
+  const onSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
-    const auth = authenticate as AuthFunction;
-    auth(email, password)
+ 
+    const signIn = auth.signIn as AuthFunction
+    await signIn(email, password)
       .then(data => {
         console.log('User logged in', data);
+        history.push('/');
       })
       .catch(err => {
         console.error('Login error', err);
@@ -23,7 +29,7 @@ const Signin = () => {
   
   return (
     <div className="signin">
-      <h1 className="signin__heading">Keepr</h1>
+      <Link to="/" className="signin__heading">Keepr</Link>
       <form className="signin__form" onSubmit={onSubmit}>
         
         <input
@@ -44,7 +50,7 @@ const Signin = () => {
         <button className="signin__button" type="submit">Sign In</button>
         <div className="signin__other">
           <span>
-            Need an account? <a href="#baz">Sign Up!</a>
+            Need an account? <Link to="/signup">Sign Up!</Link>
           </span>
         </div>        
       </form>

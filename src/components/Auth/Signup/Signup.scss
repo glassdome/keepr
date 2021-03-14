@@ -11,6 +11,7 @@
   font-size: 1.1rem;
 
   &__heading {
+    text-decoration: none;
     font-size: 3rem;
     font-weight: 900;
     color: #555;
@@ -33,16 +34,17 @@
     background-color: #555;
     color: white;
   }
+  & input[type=text] {
+    font-size: inherit;
+    padding: 1em;
+    border-radius: var(--radius);
+    border: 1px solid darkgray;
+    background-color: white;
+    -webkit-autofill: white !important;
+  }  
 }
 
-input[type=text] {
-  font-size: inherit;
-  padding: 1em;
-  border-radius: var(--radius);
-  border: 1px solid darkgray;
-  background-color: white;
-  -webkit-autofill: white !important;
-}
+
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
