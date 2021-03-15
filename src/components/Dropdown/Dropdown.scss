@@ -38,12 +38,12 @@
     }
     
     &:hover,
-    &:hover a {
+    &:hover span {
       color: orangered;
       cursor: pointer;
     }
     
-    & a {
+    & span {
       color: #555;
       text-decoration: none;
     }  

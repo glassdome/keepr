@@ -34,8 +34,6 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
-  userName: string;
-  contacts: User[];
 }
 
 /*

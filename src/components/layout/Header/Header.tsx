@@ -1,15 +1,11 @@
+import { User } from '../../../models/data';
 import Avatar from './Avatar/Avatar';
 
 import "./Header.scss";
 
+
 const Header = () => {
   const avprops = {
-    user: {
-      id: '',
-      email: '',
-      firstName: 'Sy',
-      lastName: 'Smythe'
-    },
     color: '#ff1696'
   }
 

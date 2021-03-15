@@ -16,7 +16,7 @@ const DropdownItem = <T, >({ label, data, onClick }: DropdownProps<T>) => {
 
   return (
     <li className="dropdown__item" onClick={e => handleClick(e)}>
-      <a href="#foo">{label}</a>
+      <span>{label}</span>
     </li>
   );
 };

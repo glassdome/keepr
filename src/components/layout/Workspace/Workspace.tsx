@@ -2,10 +2,14 @@ import { Note, NoteData, NoteProps, NoteFunction } from '../../Notes';
 import { CreateWidget } from '../../CreateWidget';
 import './Workspace.scss';
 
-const Workspace = (props: { notes: NoteData[], onUpdate: NoteFunction }) => {
+interface WorkspaceProps {
+  notes: NoteData[]
+}
+
+const Workspace = ({ notes }: WorkspaceProps) => {
 
   const renderNotes = () => {
-    return props.notes.map((note: NoteData, index) => {
+    return notes.map((note: NoteData, index) => {
       const noteProps: NoteProps = {
         note
       };
