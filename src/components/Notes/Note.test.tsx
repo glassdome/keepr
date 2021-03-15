@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Note, { NoteData } from './Note'
-import App from '../../App';
 
 describe('Note', () => {
   const noteTitle1 = 'foo';

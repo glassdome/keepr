@@ -8,16 +8,10 @@ import { NoteContext } from '../context';
 import { db } from "../../data/db";
 import { useAuth } from '../Auth/AuthProvider/AuthProvider';
 
-import { Archive, Labels, Reminders, Trash } from '../pages'
+import { Archive, Labels, Reminders, Trash, UserProfile } from '../pages'
 
 import "../../styles.scss";
-
-interface User {
-  id: string,
-  email: string,
-  firstName: string,
-  lastName: string
-}
+import { User } from '../../models/data';
 
 const newUser = (token: CognitoIdToken): User => ({
     id: token.payload.sub,
@@ -39,10 +33,9 @@ const Keepr = () => {
     // Get user data from current auth session.
     if (auth.getSession) {
       auth.getSession().then((session) => {
-        const user = newUser( session.getIdToken() )
-        setUser(user)
+        setUser( newUser( session.getIdToken() ) )
+        console.log('User', user);
       });
-      console.log('User', user);
     }
   }, []);
 
@@ -80,11 +73,6 @@ const Keepr = () => {
     }
   }
 
-  const workspaceProps = {
-    notes,
-    onUpdate: updateNote
-  };
-
   const functions = {
     onUpdate: upsertNote,
     onCreate: createNote,
@@ -92,6 +80,8 @@ const Keepr = () => {
   }
 
   let { url } = useRouteMatch();
+
+
   return (
     <NoteContext.Provider value={functions}>
       <div className="App">
@@ -100,12 +90,13 @@ const Keepr = () => {
 
         <Switch>
           <Route exact={true} path="/notes">
-            <Workspace {...workspaceProps} />
+            <Workspace notes={notes} />
           </Route>
           <Route path={`${url}/reminders`} component={Reminders} />
           <Route path={`${url}/labels`} component={Labels} />
           <Route path={`${url}/archive`} component={Archive} />
           <Route path={`${url}/trash`} component={Trash} />
+          <Route path={`${url}/profile`} component={UserProfile} />
         </Switch>
       
       </div>

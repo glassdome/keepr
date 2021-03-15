@@ -1,8 +1,10 @@
 .dropdown-opener {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
-.dropdown-opener:hover > ul,
+.dropdown-opener:hover  ul,
 .dropdown:hover {
   visibility: visible;
   opacity: 1;
@@ -36,12 +38,12 @@
     }
     
     &:hover,
-    &:hover a {
+    &:hover span {
       color: orangered;
       cursor: pointer;
     }
     
-    & a {
+    & span {
       color: #555;
       text-decoration: none;
     }  

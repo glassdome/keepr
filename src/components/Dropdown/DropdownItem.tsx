@@ -1,23 +1,22 @@
 import React from 'react';
-import { NoteData } from '../Notes';
 import './Dropdown.scss';
 
-interface DropdownProps {
+interface DropdownProps<T> {
   label: string,
-  note: NoteData,
-  onClick: (note: NoteData) => void
+  data: T,
+  onClick: (data: T) => void
 }
 
-const DropdownItem = ({ label, note, onClick }: DropdownProps) => {
+const DropdownItem = <T, >({ label, data, onClick }: DropdownProps<T>) => {
   const handleClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     e.stopPropagation();
     console.log('DropdownItem::handleClick()');
-    onClick(note);
+    onClick(data);
   }
 
   return (
     <li className="dropdown__item" onClick={e => handleClick(e)}>
-      <a href="#foo">{label}</a>
+      <span>{label}</span>
     </li>
   );
 };

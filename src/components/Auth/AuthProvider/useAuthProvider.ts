@@ -56,6 +56,7 @@ export const useAuthProvider = () => {
   const signOut = () => {
     const user = Pool.getCurrentUser();
     if (user) {
+      console.log('User Sign-Out', user);
       user.signOut();
       setSession(undefined);
     }

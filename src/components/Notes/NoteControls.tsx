@@ -36,9 +36,9 @@ const NoteControls = ({ note }: ControlProps) => {
         <DropdownOpener>
           <MoreVert />
           <Dropdown>
-            <DropdownItem label="Delete Note" note={note} onClick={context.onDelete}/>
-            <DropdownItem label="Change labels" note={note} onClick={() => console.log('Change labels')}/>
-            <DropdownItem label="Make a copy" note={note} onClick={() => console.log('Make a copy')}/>
+            <DropdownItem label="Delete Note" data={note} onClick={context.onDelete}/>
+            <DropdownItem label="Change labels" data={note} onClick={() => console.log('Change labels')}/>
+            <DropdownItem label="Make a copy" data={note} onClick={() => console.log('Make a copy')}/>
           </Dropdown>
         </DropdownOpener>
       </li>
