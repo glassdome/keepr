@@ -1,8 +1,10 @@
 .dropdown-opener {
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
-.dropdown-opener:hover > ul,
+.dropdown-opener:hover  ul,
 .dropdown:hover {
   visibility: visible;
   opacity: 1;

@@ -1,6 +1,18 @@
+import Avatar from './Avatar/Avatar';
+
 import "./Header.scss";
 
 const Header = () => {
+  const avprops = {
+    user: {
+      id: '',
+      email: '',
+      firstName: 'Sy',
+      lastName: 'Smythe'
+    },
+    color: '#ff1696'
+  }
+
   return (
     <header className="header">
       <div className="header-left">
@@ -45,7 +57,8 @@ const Header = () => {
           <span className="material-icons-outlined">settings</span>
         </div>
         <div className="header-item-user">
-          <span className="material-icons-outlined">person</span>
+          {/* <span className="material-icons-outlined">person</span> */}
+          <Avatar {...avprops} />
         </div>
       </div>
     </header>
