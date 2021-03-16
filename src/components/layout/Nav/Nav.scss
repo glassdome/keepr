@@ -8,7 +8,7 @@
 
   width: 5rem;
   background-color: white;
-  z-index: 5;
+  z-index: 8;
 
   transition: width 150ms ease-in-out;
 }
@@ -20,7 +20,6 @@
 }
 
 .nav-items {
-  // outline: 2px solid pink;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +30,6 @@
 }
 
 .nav-item {
-  //outline: 1px solid lightblue;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -90,20 +88,23 @@
     width: 100%;
     overflow: hidden;
   }
+  
   .nav-link i {
     margin: 0 .5rem;
   }
+
   .nav-item {
-    // outline: 1px solid red;
     justify-content: space-around;
     margin: 0 1rem 1rem;
     height: 3.5rem;
     width: 3.5rem;
   }
+  
   .nav-items {
     flex-direction: row;
     min-height: 10vh;
   }
+  
   .workspace {
     flex-wrap: nowrap;
     overflow-x: hidden;

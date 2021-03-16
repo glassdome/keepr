@@ -8,11 +8,10 @@
   background-color: white;
   border-bottom: 1px solid lightgray;
   
-  z-index: 6;
+  z-index: 9;
 }
 
 .header-left {
-  // outline: 2px solid blue;
   display: flex;
   height: 100%;
   cursor: default;
@@ -27,7 +26,6 @@
 }
 
 .logo {
-  // outline: 2px solid red;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,7 +48,6 @@
 }
 
 .header-tools {
-  // outline: 2px solid blue;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -58,10 +55,9 @@
   height: 100%;
   padding: 0 .5rem;
   min-width: 20vw;
-  
 }
+
 [class*="header-item-"] {
-  //outline: 1px solid red;
   cursor: pointer;
   width: 3rem;
   height: 3rem;
